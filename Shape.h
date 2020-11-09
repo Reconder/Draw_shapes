@@ -4,7 +4,7 @@
 using namespace std;
 
 
-
+//Draw shape with vertices positions
 template <typename T>
 void DrawShape(vector<int>& pos, COLORREF color)
 {
@@ -12,7 +12,7 @@ void DrawShape(vector<int>& pos, COLORREF color)
 	shape.Draw(color);
 }
 
-
+//Draw shape with one parameter
 template <typename T>
 void DrawShape(vector<int>& pos, int a, COLORREF color)
 {
@@ -20,6 +20,7 @@ void DrawShape(vector<int>& pos, int a, COLORREF color)
 	shape.Draw(color);
 }
 
+//Draw shape with two parameters
 template <typename T>
 void DrawShape(vector<int>& pos, int a, int b, COLORREF color)
 {
@@ -27,14 +28,14 @@ void DrawShape(vector<int>& pos, int a, int b, COLORREF color)
 	shape.Draw(color);
 }
 
-
+//Base class for all shapes
 class Shape
 {
 public:
-	vector<int> pointsX;
-	vector<int> pointsY;
-	vector<int> position;
+	vector<int> pointsX; //X coordinates of the points used to draw shapes
+	vector<int> pointsY; //Y coordinates of the points used to draw shapes
 	
+	//Draw the shape using color "color" and points that are defined in constructor of each shape. We draw lines between all consecutive points to get the shape.
 	virtual void Draw(COLORREF color)
 	{
 		HWND console_handle = GetConsoleWindow();
@@ -50,29 +51,30 @@ public:
 		ReleaseDC(console_handle, device_context);
 	};
 };
-//position - position of the center of the shape
+//Rectangle class. Constructor (vector<int> pos, int a, int b) requires position (pos) of the center of the rectangle, width (a) and height (b).
 class Rect : public Shape
 {
 public:
 	Rect(vector<int>& pos, int a, int b)
 	{
-		position = pos;
+		
 
-		pointsX.push_back(position[0] - a / 2);
-		pointsY.push_back(position[1] - b / 2);
+		pointsX.push_back(pos[0] - a / 2); //Upper left vertice
+		pointsY.push_back(pos[1] - b / 2);
 
-		pointsX.push_back(position[0] + a / 2);
-		pointsY.push_back(position[1] - b / 2);
+		pointsX.push_back(pos[0] + a / 2); //Upper right vertice
+		pointsY.push_back(pos[1] - b / 2);
 
-		pointsX.push_back(position[0] + a / 2);
-		pointsY.push_back(position[1] + b / 2);
+		pointsX.push_back(pos[0] + a / 2); //Lower right vertice
+		pointsY.push_back(pos[1] + b / 2);
 
-		pointsX.push_back(position[0] - a / 2);
-		pointsY.push_back(position[1] + b / 2);
+		pointsX.push_back(pos[0] - a / 2); //Lower left vertice
+		pointsY.push_back(pos[1] + b / 2);
 	}
 };
 
 
+//Triangle class. Constructor (vector<int> pos) requires coordinates of all vertices in one vector<int> in the following format: x1, y1, x2, y2, x3, y3
 class Triangle : public Shape
 {
 public:
@@ -87,81 +89,83 @@ public:
 	}
 };
 
+//Circle class. Constructor (vector<int> pos, int r) requires coordinates (pos) of the center of the circle and its radius (r).
 class Circle : public Shape
 {
 public:
 	Circle(vector<int>& pos, int r)
 	{
-		position = pos;
+		
 		const double PI = 3.141592653589793238463;
 		double angleIncrement = PI / 180;
 		for (double angle = 0; angle < 360 * angleIncrement; angle += angleIncrement)
 		{
 			
-			pointsX.push_back(position[0] + r * sin(angle));
-			pointsY.push_back(position[1] + r * cos(angle));
+			pointsX.push_back(pos[0] + r * sin(angle));
+			pointsY.push_back(pos[1] + r * cos(angle));
 			angle += angleIncrement;
 		}
 	};
 	
 };
 
+//Star class. Constructor (vector<int> pos, int innerR, int outerR) requires coordinates (pos) of the center of the star and its inner (innerR) and outer (outerR) radii.
 class Star : public Shape
 {
 public:
 	Star(vector<int>& pos, int innerR, int outerR)
 	{
-		position = pos;
+		
 		const double PI = 3.141592653589793238463;
 		double angleIncrement = PI / 5;
 		for (double angle = 0; angle < 10 * angleIncrement; angle += angleIncrement)
 		{
-			pointsX.push_back(position[0] + innerR * sin(angle));
-			pointsY.push_back(position[1] + innerR * cos(angle));
+			pointsX.push_back(pos[0] + innerR * sin(angle));
+			pointsY.push_back(pos[1] + innerR * cos(angle));
 			angle += angleIncrement;
-			pointsX.push_back(position[0] + outerR * sin(angle));
-			pointsY.push_back(position[1] + outerR * cos(angle));
+			pointsX.push_back(pos[0] + outerR * sin(angle));
+			pointsY.push_back(pos[1] + outerR * cos(angle));
 		}
 	}
 };
 
 
-
+//FlippedStar class. Constructor (vector<int> pos, int innerR, int outerR) requires coordinates (pos) of the center of the flipped star and its inner (innerR) and outer (outerR) radii.
 class FlippedStar : public Shape
 {
 public:
 	FlippedStar(vector<int>& pos, int innerR, int outerR)
 	{
-		position = pos;
+		
 		const double PI = 3.141592653589793238463;
 		double angleIncrement = PI / 5;
 		for (double angle = 0; angle < 10 * angleIncrement; angle += angleIncrement)
 		{
-			pointsX.push_back(position[0] + outerR * sin(angle));
-			pointsY.push_back(position[1] + outerR * cos(angle));
+			pointsX.push_back(pos[0] + outerR * sin(angle));
+			pointsY.push_back(pos[1] + outerR * cos(angle));
 			angle += angleIncrement;
-			pointsX.push_back(position[0] + innerR * sin(angle));
-			pointsY.push_back(position[1] + innerR * cos(angle));
+			pointsX.push_back(pos[0] + innerR * sin(angle));
+			pointsY.push_back(pos[1] + innerR * cos(angle));
 		}
 	}
 };
 
-
+//Star class. Constructor (vector<int> pos, int innerR, int outerR) requires coordinates (pos) of the center of the shuriken and its inner (innerR) and outer (outerR) radii.
 class Shuriken : public Shape
 {
 public:
 	Shuriken(vector<int>& pos, int innerR, int outerR)
 	{
-		position = pos;
+		
 		const double PI = 3.141592653589793238463;
 		for (int i = 0; i < 5; i++)
 		{
 			double angle = 72 * i * PI / 180;
-			pointsX.push_back(position[0] + outerR * sin(angle));
-			pointsY.push_back(position[1] + outerR * cos(angle));
+			pointsX.push_back(pos[0] + outerR * sin(angle));
+			pointsY.push_back(pos[1] + outerR * cos(angle));
 			angle += 72;
-			pointsX.push_back(position[0] + innerR * sin(angle));
-			pointsY.push_back(position[1] + innerR * cos(angle));
+			pointsX.push_back(pos[0] + innerR * sin(angle));
+			pointsY.push_back(pos[1] + innerR * cos(angle));
 
 		}
 	}

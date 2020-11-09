@@ -11,7 +11,7 @@ void DrawStar();
 void DrawFlippedStar();
 void DrawShuriken();
 
-
+//"User Interface" if you can call it that way.
 void UserDraw(string shape)
 {
     if (shape == "Rectangle")
@@ -40,6 +40,9 @@ void UserDraw(string shape)
     }
 }
 
+
+
+//Asks for the parameters of the rectangle and draws it.
 void DrawRectangle()
 {
     int a, b;
@@ -53,6 +56,7 @@ void DrawRectangle()
     DrawShape<Rect>(position, a, b, color);
 }
 
+//Asks for the parameters of the circle and draws it.
 void DrawCircle()
 {
     int r;
@@ -66,6 +70,7 @@ void DrawCircle()
     DrawShape<Circle>(position, r, color);
 }
 
+//Asks for the parameters of the triangle and draws it.
 void DrawTriangle()
 {
     vector<int> pos{ 0, 0, 0, 0, 0, 0 };
@@ -80,6 +85,7 @@ void DrawTriangle()
     DrawShape<Triangle>(pos, color);
 }
 
+//Asks for the parameters of the star and draws it.
 void DrawStar()
 {
     int innerR, outerR;
@@ -93,6 +99,7 @@ void DrawStar()
     DrawShape<Star>(position, innerR, outerR, color);
 }
 
+//Asks for the parameters of the flippedstar and draws it.
 void DrawFlippedStar()
 {
     int innerR, outerR;
@@ -106,6 +113,7 @@ void DrawFlippedStar()
     DrawShape<FlippedStar>(position, innerR, outerR, color);
 }
 
+//Asks for the parameters of the shuriken and draws it.
 void DrawShuriken()
 {
     int innerR, outerR;

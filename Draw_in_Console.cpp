@@ -12,7 +12,7 @@ int main()
     UserDraw(shape); 
     /*
     Also, you can just use DrawShape<Shape>(position, {shape_parameters}, color)
-    Examples"
+    Examples:
 
     vector<int> position { 100, 230 , 230, 100, 340, 340 };
     DrawShape<Triangle>(position, RGB(255, 0, 0));
@@ -22,6 +22,15 @@ int main()
     int outerR = 200;
     DrawShape<Star>(position, innerR, outerR, RGB(R, G, B));
     
+
+    Available shapes and their parameters:
+    DrawShape<Rectangle>(vector<int> position, int width, int height, COLORREF color);
+    DrawShape<Circle>(vector<int> position, int radius, COLORREF color);
+    DrawShape<Triangle>(vector<int> positions, COLORREF color);
+    DrawShape<Star>(vector<int> position, int innerRadius, int outerRadius, COLORREF color);
+    DrawShape<FlippedStar>(vector<int> position, int innerRadius, int outerRadius, COLORREF color);
+    DrawShape<Shuriken>(vector<int> position, int innerRadius, int outerRadius, COLORREF color);
+
     */
     return 0;
 }
