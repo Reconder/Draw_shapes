@@ -57,7 +57,8 @@ class Rect : public Shape
 public:
 	Rect(vector<int>& pos, int a, int b)
 	{
-		
+		pointsX.reserve(4);
+		pointsY.reserve(4);
 
 		pointsX.push_back(pos[0] - a / 2); //Upper left vertice
 		pointsY.push_back(pos[1] - b / 2);
@@ -81,6 +82,8 @@ public:
 	//Just three random points
 	Triangle(vector<int>& pos)
 	{
+		pointsX.reserve(pos.size()/2);
+		pointsY.reserve(pos.size() / 2);
 		for (int i = 0; i < pos.size(); i += 2)
 		{
 			pointsX.push_back(pos[i]);
@@ -98,6 +101,8 @@ public:
 		
 		const double PI = 3.141592653589793238463;
 		double angleIncrement = PI / 180;
+		pointsX.reserve(360);
+		pointsY.reserve(360);
 		for (double angle = 0; angle < 360 * angleIncrement; angle += angleIncrement)
 		{
 			
@@ -118,6 +123,8 @@ public:
 		
 		const double PI = 3.141592653589793238463;
 		double angleIncrement = PI / 5;
+		pointsX.reserve(10);
+		pointsY.reserve(10);
 		for (double angle = 0; angle < 10 * angleIncrement; angle += angleIncrement)
 		{
 			pointsX.push_back(pos[0] + innerR * sin(angle));
@@ -139,6 +146,8 @@ public:
 		
 		const double PI = 3.141592653589793238463;
 		double angleIncrement = PI / 5;
+		pointsX.reserve(10);
+		pointsY.reserve(10);
 		for (double angle = 0; angle < 10 * angleIncrement; angle += angleIncrement)
 		{
 			pointsX.push_back(pos[0] + outerR * sin(angle));
@@ -158,6 +167,8 @@ public:
 	{
 		
 		const double PI = 3.141592653589793238463;
+		pointsX.reserve(10);
+		pointsY.reserve(10);
 		for (int i = 0; i < 5; i++)
 		{
 			double angle = 72 * i * PI / 180;
