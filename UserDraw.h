@@ -82,7 +82,7 @@ void DrawTriangle()
     cout << "What color? (format: R, G, B)" << endl;
     cin >> R >> G >> B;
     COLORREF color = RGB(R, G, B);
-    DrawShape<Triangle>(pos, color);
+    DrawShape<ConnectPoints>(pos, color);
 }
 
 //Asks for the parameters of the star and draws it.

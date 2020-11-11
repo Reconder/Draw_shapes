@@ -75,12 +75,12 @@ public:
 };
 
 
-//Triangle class. Constructor (vector<int> pos) requires coordinates of all vertices in one vector<int> in the following format: x1, y1, x2, y2, x3, y3
-class Triangle : public Shape
+//Connect class. Typically would be used to draw triangles. Constructor (vector<int> pos) requires coordinates of all vertices in one vector<int> in the following format: x1, y1, x2, y2, x3, y3...
+class ConnectPoints : public Shape
 {
 public:
 	//Just three random points
-	Triangle(vector<int>& pos)
+	ConnectPoints(vector<int>& pos)
 	{
 		pointsX.reserve(pos.size()/2);
 		pointsY.reserve(pos.size() / 2);
