@@ -75,9 +75,9 @@ void DrawTriangle()
 {
     vector<int> pos{ 0, 0, 0, 0, 0, 0 };
     cout << "Enter the positions of all vertices of the triangle. (format: x1, y1, x2, y2, x3, y3)" << endl;
-    cin >> pos[0] >> pos[1] >> pos[2] >> pos[3] >> pos[4] >> pos[5];
-    //for (int i : position)
-    //    cin >> i;
+    //cin >> pos[0] >> pos[1] >> pos[2] >> pos[3] >> pos[4] >> pos[5];
+    for (int i = 0; i < pos.size(); i++)
+        cin >> pos[i];
     int R, G, B;
     cout << "What color? (format: R, G, B)" << endl;
     cin >> R >> G >> B;

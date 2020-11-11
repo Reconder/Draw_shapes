@@ -7,7 +7,7 @@
 int main()
 {
     string shape;
-    cout << "What's the shape are we drawing? (Rectangle / Circle / Triangle / Star / Flipped Star / Shuriken)" << endl;
+    cout << "What's the shape are we drawing? (Rectangle / Circle / Triangle / Star / FlippedStar / Shuriken)" << endl;
     cin >> shape;
     UserDraw(shape); 
     /*
